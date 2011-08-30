@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    inquisitor (0.0.1)
+    inquisitor (0.0.3)
       json
       thor
 

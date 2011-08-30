@@ -27,6 +27,8 @@ module Inquisitor
         gem_collection = Inquisitor::GemCollection.new(file)
         file_content = File.read(file)
         unless file_content.nil?
+          # As we aren't running bundler in the folders with the gemfile help
+          # bundler refer to the Gemfile path by setting it manually via the env
           ENV['BUNDLE_GEMFILE'] = file.gsub(".lock","")
           lock_file = Bundler::LockfileParser.new(file_content)
 

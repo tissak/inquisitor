@@ -9,6 +9,8 @@ module Inquisitor
     end
 
     def outdated?
+      # if either version state is unknown, return it's out of date to be safe
+      return true if (@new_version=="unknown" || @current_version=="unknown")
       @new_version > @current_version
     end
 
