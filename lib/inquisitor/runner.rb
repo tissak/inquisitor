@@ -21,16 +21,21 @@ module Inquisitor
     end
 
     def check_gemfile(files)
+      puts "Files found: "
+      puts files.join("\n")
       files.collect do |file|
         gem_collection = Inquisitor::GemCollection.new(file)
         file_content = File.read(file)
-        lock_file = Bundler::LockfileParser.new(file_content)
+        unless file_content.nil?
+          ENV['BUNDLE_GEMFILE'] = file.gsub(".lock","")
+          lock_file = Bundler::LockfileParser.new(file_content)
 
-        lock_file.specs.collect do |s|
-          latest_version = Gem.latest_version_for(s.name)
-          cv = s.version.nil? ? 'unknown' : s.version.version
-          lv = latest_version.nil? ? 'unknown' : latest_version.version
-          gem_collection.add_gem(s.name, s.version.version, lv)
+          lock_file.specs.collect do |s|
+            latest_version = Gem.latest_version_for(s.name)
+            cv = s.version.nil? ? 'unknown' : s.version.version
+            lv = latest_version.nil? ? 'unknown' : latest_version.version
+            gem_collection.add_gem(s.name, s.version.version, lv)
+          end
         end
 
         gem_collection
