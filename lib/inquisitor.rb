@@ -1,10 +1,10 @@
 require 'rubygems'
 require 'bundler'
 
-["lib/gem_collection.rb",
- "lib/gem_entry.rb",
- "lib/gemfile_finder.rb",
- "lib/runner.rb"].each {|f| require f }
+["inquisitor/gem_collection.rb",
+ "inquisitor/gem_entry.rb",
+ "inquisitor/gemfile_finder.rb",
+ "inquisitor/runner.rb"].each {|f| require f }
 
 module Inquisitor
   def self.run(dir=".")
@@ -30,3 +30,4 @@ module Inquisitor
     end
   end
 end
+
