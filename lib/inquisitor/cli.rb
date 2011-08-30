@@ -8,8 +8,8 @@ module Inquisitor
       puts Inquisitor.run_outdated_report(dir).to_json
     end
 
-    desc "dump DIRECTORY FILE", "Output report to a file"
-    def report_dump(dir, file)
+    desc "dump_outdated DIRECTORY FILE", "Output report to a file"
+    def dump_outdated(dir, file)
       Inquisitor.run_outdated_report_dump(dir, file)
       puts "Done"
     end
